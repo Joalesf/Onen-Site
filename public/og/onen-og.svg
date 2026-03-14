@@ -1,0 +1,26 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#050B14"/>
+      <stop offset="0.55" stop-color="#0A1628"/>
+      <stop offset="1" stop-color="#10253F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 160) rotate(18) scale(380 280)">
+      <stop stop-color="#5FE6FF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#5FE6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 120) rotate(160) scale(420 260)">
+      <stop stop-color="#3D7DBE" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#3D7DBE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <rect x="68" y="84" width="1064" height="462" rx="32" stroke="rgba(255,255,255,0.15)"/>
+  <text x="116" y="210" fill="#DFF7FF" font-family="Arial, sans-serif" font-weight="700" font-size="66">ONEN / OnenVideo</text>
+  <text x="116" y="280" fill="#9FD1E7" font-family="Arial, sans-serif" font-size="35">Seguridad electronica, IA y automatizacion en Panama</text>
+  <text x="116" y="352" fill="#B6CCDD" font-family="Arial, sans-serif" font-size="28">Integramos camaras, sensores y datos en decisiones automaticas.</text>
+  <circle cx="1060" cy="510" r="54" fill="rgba(95,230,255,0.18)" stroke="rgba(183,243,255,0.45)"/>
+  <text x="1034" y="520" fill="#E4FBFF" font-family="Arial, sans-serif" font-weight="700" font-size="22">ON</text>
+</svg>
