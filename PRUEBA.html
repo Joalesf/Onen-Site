@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ONEN Video Intelligence | Inteligencia Operacional con Video, Sensores e IoT</title>
+  <meta name="description" content="ONEN Video Intelligence transforma cámaras, sensores industriales y datos operativos en dashboards ejecutivos, KPIs y analítica en tiempo real con la plataforma ORCHESTRA." />
+  <meta name="keywords" content="analítica de video, inteligencia operacional, video analytics, industria 4.0, IoT industrial, dashboards ejecutivos, ORCHESTRA, MQTT, BACnet, Modbus, integración de sensores, datos en tiempo real, ONEN" />
+  <meta name="author" content="ONEN Brain Hunters" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1320" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ONEN Video Intelligence | Inteligencia Operacional en Tiempo Real" />
+  <meta property="og:description" content="Convertimos video, sensores y sistemas existentes en dashboards ejecutivos, KPIs y reportes inteligentes con ORCHESTRA." />
+  <meta property="og:url" content="https://www.onenvideo.com/" />
+  <meta property="og:site_name" content="ONEN Video Intelligence" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ONEN Video Intelligence | Inteligencia Operacional en Tiempo Real" />
+  <meta name="twitter:description" content="Analítica de video, sensores e integración multiprotocolo para transformar datos operacionales en decisiones gerenciales." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0d1b2d;
+      --panel: rgba(255,255,255,0.06);
+      --panel-border: rgba(255,255,255,0.12);
+      --text: #e9eef7;
+      --muted: #b8c2d6;
+      --primary: #4cc9f0;
+      --primary-2: #4361ee;
+      --accent: #7ae582;
+      --danger: #ff7b72;
+      --max: 1200px;
+      --radius: 20px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(67,97,238,0.18), transparent 25%),
+        radial-gradient(circle at top left, rgba(76,201,240,0.12), transparent 25%),
+        linear-gradient(180deg, #07111f 0%, #0a1627 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(7, 17, 31, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: var(--shadow);
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      box-shadow: 0 14px 40px rgba(67,97,238,0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .hero {
+      padding: 72px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(76, 201, 240, 0.08);
+      color: var(--primary);
+      border: 1px solid rgba(76,201,240,0.18);
+      font-size: 13px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -1.4px;
+      margin-bottom: 20px;
+    }
+
+    .hero p.lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 740px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .trust-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .trust-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .trust-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .dashboard {
+      display: grid;
+      gap: 16px;
+    }
+
+    .dashboard-top {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+    }
+
+    .mini-panel {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mini-title {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .metric {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .metric-sub {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      height: 140px;
+      margin-top: 8px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, var(--primary), var(--primary-2));
+      opacity: 0.9;
+    }
+
+    .dashboard-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-header {
+      max-width: 820px;
+      margin-bottom: 38px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.8px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .bullet-list {
+      list-style: none;
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 24px;
+      color: var(--muted);
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 900;
+    }
+
+    .protocols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .protocol {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(76,201,240,0.08);
+      border: 1px solid rgba(76,201,240,0.14);
+      color: #d8f6ff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .industries {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .industry-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .industry-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .industry-card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+    }
+
+    .industry-card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .industry-card li {
+      color: var(--muted);
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .industry-card li::before {
+      content: "✓";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+    }
+
+    .integration-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+
+    .logo-cloud {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .logo-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      color: #dbe5f5;
+      font-weight: 700;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .benefit {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      color: var(--muted);
+    }
+
+    .cta {
+      padding: 88px 0 100px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(67,97,238,0.20), rgba(76,201,240,0.10));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      margin-bottom: 14px;
+      line-height: 1.08;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      max-width: 820px;
+      margin: 0 auto 24px;
+      font-size: 1.03rem;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .grid-2,
+      .integration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .industries {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .trust-row,
+      .dashboard-bottom {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .industries,
+      .steps,
+      .benefits,
+      .trust-row,
+      .dashboard-top,
+      .dashboard-bottom,
+      .logo-cloud {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .section,
+      .cta {
+        padding: 64px 0;
+      }
+
+      .cta-box {
+        padding: 28px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ONEN Video Intelligence",
+    "url": "https://www.onenvideo.com/",
+    "description": "Empresa especializada en inteligencia operacional, analítica de video, integración IoT y dashboards ejecutivos con la plataforma ORCHESTRA.",
+    "areaServed": "Latinoamérica",
+    "knowsAbout": [
+      "Analítica de video",
+      "Inteligencia operacional",
+      "Industria 4.0",
+      "IoT industrial",
+      "MQTT",
+      "BACnet",
+      "Modbus",
+      "Dashboards ejecutivos",
+      "Integración de sensores"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          ONEN Video Intelligence
+          <span>Operational Data. Executive Decisions.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#solucion">Solución</a>
+        <a href="#orchestra">ORCHESTRA</a>
+        <a href="#industrias">Industrias</a>
+        <a href="#integraciones">Integraciones</a>
+        <a href="#contacto" class="btn btn-secondary">Solicitar demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Inteligencia operacional en tiempo real</div>
+          <h1>Convierta sus cámaras y sensores en información útil para la alta dirección</h1>
+          <p class="lead">
+            En ONEN Video Intelligence transformamos metadata de video, sensores industriales y sistemas existentes
+            en dashboards ejecutivos, KPIs, alertas y reportes dinámicos mediante nuestra plataforma ORCHESTRA.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+            <a href="#solucion" class="btn btn-secondary">Conocer la solución</a>
+          </div>
+
+          <div class="trust-row">
+            <div class="trust-card">
+              <strong>Video + IoT</strong>
+              <span>Correlación entre cámaras, sensores y eventos operativos</span>
+            </div>
+            <div class="trust-card">
+              <strong>Dashboards</strong>
+              <span>KPIs y visualización ejecutiva en tiempo real</span>
+            </div>
+            <div class="trust-card">
+              <strong>Multi-Protocolo</strong>
+              <span>MQTT, BACnet, Modbus, TCP/IP y APIs</span>
+            </div>
+            <div class="trust-card">
+              <strong>Flexible</strong>
+              <span>Cloud, on premise, edge o arquitectura híbrida</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="glass-card">
+            <div class="dashboard">
+              <div class="dashboard-top">
+                <div class="mini-panel">
+                  <div class="mini-title">Indicador de eficiencia operacional</div>
+                  <div class="metric">94.2%</div>
+                  <div class="metric-sub">+8.6% frente al periodo anterior</div>
+                  <div class="bars" aria-hidden="true">
+                    <div class="bar" style="height:45%"></div>
+                    <div class="bar" style="height:62%"></div>
+                    <div class="bar" style="height:58%"></div>
+                    <div class="bar" style="height:76%"></div>
+                    <div class="bar" style="height:88%"></div>
+                    <div class="bar" style="height:72%"></div>
+                    <div class="bar" style="height:92%"></div>
+                  </div>
+                </div>
+
+                <div class="mini-panel">
+                  <div class="mini-title">Alertas y eventos</div>
+                  <div class="metric">127</div>
+                  <div class="metric-sub">Procesados en tiempo real</div>
+                  <div class="chip-list">
+                    <span class="chip">Temperatura</span>
+                    <span class="chip">Vibración</span>
+                    <span class="chip">RFID</span>
+                    <span class="chip">Video AI</span>
+                    <span class="chip">Acceso</span>
+                    <span class="chip">Trazabilidad</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-bottom">
+                <div class="mini-panel">
+                  <div class="mini-title">Tiempo de respuesta</div>
+                  <div class="metric">1.3s</div>
+                  <div class="metric-sub">Eventos críticos</div>
+                </div>
+                <div class="mini-panel">
+                  <div class="mini-title">Fuentes integradas</div>
+                  <div class="metric">18</div>
+                  <div class="metric-sub">Video, sensores y software</div>
+                </div>
+                <div class="mini-panel">
+                  <div class="mini-title">KPIs activos</div>
+                  <div class="metric">32</div>
+                  <div class="metric-sub">Gerencia y operación</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solucion">
+      <div class="container">
+        <div class="section-header">
+          <h2>De videovigilancia a inteligencia operacional</h2>
+          <p>
+            Muchas organizaciones ya cuentan con cámaras, sensores, ERP, MES o plataformas de seguridad,
+            pero la información suele estar fragmentada. ONEN convierte esa data dispersa en una base estructurada
+            de indicadores, reportes y decisiones.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>El problema</h3>
+            <p>
+              Tener datos no significa tener inteligencia. Sin una capa de integración, procesamiento y visualización,
+              la información no llega con valor real a los supervisores, gerentes o directores.
+            </p>
+            <ul class="bullet-list">
+              <li>Datos aislados entre video, sensores y software</li>
+              <li>Dependencia de reportes manuales</li>
+              <li>Falta de visibilidad en tiempo real</li>
+              <li>Dificultad para crear nuevos indicadores</li>
+              <li>Baja capacidad de correlación entre eventos</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Nuestra respuesta</h3>
+            <p>
+              Diseñamos soluciones que aprovechan la infraestructura existente del cliente para construir
+              una capa moderna de inteligencia operacional orientada a resultados y crecimiento.
+            </p>
+            <ul class="bullet-list">
+              <li>Captura de metadata de video y señales industriales</li>
+              <li>Integración con sensores, gateways y bases de datos</li>
+              <li>Dashboards dinámicos y reportes ejecutivos</li>
+              <li>Arquitectura flexible y escalable</li>
+              <li>Adaptación continua a nuevos KPIs y nuevos reportes</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="orchestra">
+      <div class="container">
+        <div class="section-header">
+          <h2>ORCHESTRA: la capa de integración que convierte datos en decisiones</h2>
+          <p>
+            ORCHESTRA es nuestra plataforma de orquestación de datos diseñada para unir video,
+            sensores, software empresarial y eventos operativos en una sola arquitectura de inteligencia.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Qué integra</h3>
+            <ul class="bullet-list">
+              <li>Cámaras con analítica de video</li>
+              <li>Sensores de temperatura, humedad y calidad de aire</li>
+              <li>Sensores de vibración y condición de motores</li>
+              <li>Radar, RFID y lectura de códigos de barra</li>
+              <li>ERP, MES, VMS, dashboards y bases de datos</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Protocolos y conectividad</h3>
+            <p>
+              ORCHESTRA funciona como un middleware robusto para ambientes industriales y corporativos,
+              permitiendo recibir, traducir y despachar información entre múltiples plataformas.
+            </p>
+            <div class="protocols">
+              <span class="protocol">MQTT</span>
+              <span class="protocol">BACnet</span>
+              <span class="protocol">Modbus</span>
+              <span class="protocol">TCP/IP</span>
+              <span class="protocol">REST API</span>
+              <span class="protocol">SQL</span>
+              <span class="protocol">JSON</span>
+              <span class="protocol">Edge</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diferencial">
+      <div class="container">
+        <div class="section-header">
+          <h2>Más que analítica de video: inteligencia aplicada al negocio</h2>
+          <p>
+            Nuestro diferencial no es únicamente detectar eventos en cámara.
+            Es correlacionar video, variables de proceso y sistemas de negocio para traducir datos en decisiones útiles.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Valor agregado ONEN</h3>
+            <ul class="bullet-list">
+              <li>Definición de KPIs alineados al negocio</li>
+              <li>Diseño de arquitectura de captura e integración</li>
+              <li>Construcción de bases de datos robustas</li>
+              <li>Dashboards dinámicos para alta gerencia</li>
+              <li>Capacidad de adaptación a nuevos requerimientos</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Lo que hacemos posible</h3>
+            <ul class="bullet-list">
+              <li>Relacionar comportamiento humano con condiciones de proceso</li>
+              <li>Combinar video con temperatura, vibración o trazabilidad</li>
+              <li>Generar alertas y reportes automáticos</li>
+              <li>Interpretar eventos de operación y seguridad en un mismo entorno</li>
+              <li>Escalar desde un piloto hasta una arquitectura enterprise</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="industrias">
+      <div class="container">
+        <div class="section-header">
+          <h2>Soluciones para múltiples verticales</h2>
+          <p>
+            Adaptamos la tecnología disponible del cliente a una plataforma de inteligencia operacional
+            compatible con distintos sectores productivos y corporativos.
+          </p>
+        </div>
+
+        <div class="industries">
+          <article class="industry-card">
+            <h3>Alimentos e Industria</h3>
+            <p>Control de proceso, personal, inocuidad, seguridad ocupacional y productividad de línea.</p>
+            <ul>
+              <li>Monitoreo de producción</li>
+              <li>Variables de temperatura y vibración</li>
+              <li>Comportamiento del operador</li>
+              <li>Indicadores de eficiencia</li>
+            </ul>
+          </article>
+
+          <article class="industry-card">
+            <h3>Retail</h3>
+            <p>Información accionable sobre comportamiento de clientes y desempeño operativo.</p>
+            <ul>
+              <li>Mapas de calor</li>
+              <li>Conteo y flujo de personas</li>
+              <li>Filas y tiempos de atención</li>
+              <li>Productividad del punto de venta</li>
+            </ul>
+          </article>
+
+          <article class="industry-card">
+            <h3>Banca y Servicios Financieros</h3>
+            <p>Monitoreo de sucursales, afluencia, cumplimiento y operación de servicio.</p>
+            <ul>
+              <li>Analítica en sucursales</li>
+              <li>KPIs de atención</li>
+              <li>Seguridad inteligente</li>
+              <li>Visibilidad gerencial</li>
+            </ul>
+          </article>
+
+          <article class="industry-card">
+            <h3>Logística</h3>
+            <p>Correlación entre patio, despacho, almacén, trazabilidad y operación de activos.</p>
+            <ul>
+              <li>Despacho y almacén</li>
+              <li>Control de estibas y pallets</li>
+              <li>Lectura RFID y código de barras</li>
+              <li>Trazabilidad operacional</li>
+            </ul>
+          </article>
+
+          <article class="industry-card">
+            <h3>Transporte</h3>
+            <p>Información operacional en movimiento para mejorar seguridad, control y eficiencia.</p>
+            <ul>
+              <li>Eventos vehiculares</li>
+              <li>Monitoreo en ruta</li>
+              <li>Correlación de video y metadata</li>
+              <li>Alertas en tiempo real</li>
+            </ul>
+          </article>
+
+          <article class="industry-card">
+            <h3>Concreto e Industria Pesada</h3>
+            <p>Supervisión de maquinaria, variables ambientales y seguridad industrial.</p>
+            <ul>
+              <li>Monitoreo de equipos</li>
+              <li>Condición de activos</li>
+              <li>Control de zonas de riesgo</li>
+              <li>Productividad y cumplimiento</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="integraciones">
+      <div class="container">
+        <div class="section-header">
+          <h2>Integramos su tecnología existente</h2>
+          <p>
+            El gran valor de ORCHESTRA es que no obliga a reemplazar toda la infraestructura.
+            Aprovechamos lo que ya existe y lo convertimos en una plataforma de inteligencia útil y escalable.
+          </p>
+        </div>
+
+        <div class="integration-grid">
+          <article class="card">
+            <h3>Sistemas con los que podemos colaborar</h3>
+            <ul class="bullet-list">
+              <li>ERP y plataformas corporativas</li>
+              <li>MES y software de planta</li>
+              <li>Video Management Systems</li>
+              <li>Dashboards de Business Intelligence</li>
+              <li>Bases de datos on premise o cloud</li>
+              <li>Gateways industriales y PLCs</li>
+            </ul>
+
+            <div class="logo-cloud">
+              <div class="logo-item">Milestone</div>
+              <div class="logo-item">Genetec</div>
+              <div class="logo-item">Wisenet WAVE</div>
+              <div class="logo-item">SAP</div>
+              <div class="logo-item">QPlant</div>
+              <div class="logo-item">SQL / API</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Opciones de despliegue</h3>
+            <ul class="bullet-list">
+              <li>On Cloud</li>
+              <li>On Premise</li>
+              <li>Edge Computing</li>
+              <li>Arquitectura híbrida</li>
+              <li>Escalamiento modular por funciones</li>
+              <li>Adaptación a requerimientos de ciberseguridad</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nuestro proceso de trabajo</h2>
+          <p>
+            Diseñamos soluciones orientadas a resultados, empezando por la definición de los indicadores
+            y terminando en una arquitectura funcional, flexible y medible.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Diagnóstico</h3>
+            <p>Evaluamos cámaras, sensores, software y procesos existentes.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Definición de KPIs</h3>
+            <p>Construimos los indicadores clave con operación, IT y dirección.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Integración</h3>
+            <p>Conectamos video, sensores, gateways y plataformas de negocio.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">4</div>
+            <h3>Visualización</h3>
+            <p>Desplegamos dashboards, alertas y reportes ejecutivos dinámicos.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">5</div>
+            <h3>Escalamiento</h3>
+            <p>Expandimos la arquitectura según nuevos requerimientos y verticales.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="beneficios">
+      <div class="container">
+        <div class="section-header">
+          <h2>Beneficios para la organización</h2>
+          <p>
+            Nuestra propuesta está diseñada para generar impacto rápido sin perder capacidad de crecimiento.
+          </p>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit">Aprovecha cámaras, sensores y software que la empresa ya posee.</div>
+          <div class="benefit">Reduce tiempos de análisis manual y mejora la velocidad de respuesta.</div>
+          <div class="benefit">Convierte metadata de video en indicadores gerenciales accionables.</div>
+          <div class="benefit">Permite crear nuevos reportes y KPIs sin rehacer toda la plataforma.</div>
+          <div class="benefit">Integra múltiples fuentes de datos en una sola arquitectura de inteligencia.</div>
+          <div class="benefit">Escala desde pilotos operativos hasta despliegues empresariales completos.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Transforme su infraestructura actual en una plataforma de inteligencia operacional</h2>
+          <p>
+            Si su empresa ya tiene cámaras, sensores, sistemas de operación o software de negocio,
+            ya tiene una base de datos valiosa. ONEN le ayuda a convertirla en información útil,
+            medible y accionable para operar mejor y decidir más rápido.
+          </p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a class="btn btn-primary" href="mailto:info@onenvideo.com?subject=Solicitud%20de%20demo%20ORCHESTRA">Agendar una reunión</a>
+            <a class="btn btn-secondary" href="mailto:info@onenvideo.com?subject=Informaci%C3%B3n%20t%C3%A9cnica%20ORCHESTRA">Solicitar información técnica</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 ONEN Video Intelligence. Todos los derechos reservados.</div>
+      <div>Analítica de video · IoT industrial · Dashboards ejecutivos · ORCHESTRA</div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const id = this.getAttribute('href');
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
